@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_clean_architecture/src/injector.dart' as di;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -26,8 +28,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   Bloc.observer = const AppBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  // Add cross-flavor configuration here
+  di.init();
+
+  await dotenv.load(fileName: '.env.production');
 
   runApp(await builder());
 }

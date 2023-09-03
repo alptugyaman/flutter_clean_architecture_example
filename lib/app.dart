@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/l10n/l10n.dart';
+import 'package:flutter_clean_architecture/src/core/theme/app_theme.dart';
+import 'package:flutter_clean_architecture/src/features/listings/presentation/views/listings_view.dart';
+import 'package:flutter_clean_architecture/src/injector.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -7,15 +10,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-      ),
+      theme: injector<AppTheme>().theme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const SizedBox(),
+      home: const ListingsView(),
     );
   }
 }

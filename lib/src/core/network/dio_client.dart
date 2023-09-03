@@ -2,22 +2,22 @@
 
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loggy/loggy.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   DioClient(this._dio) {
     _dio
-      // ..options.baseUrl = dotenv.env['BASE_URL']!
+      ..options.baseUrl = dotenv.env['BASE_URL']!
+      ..options.queryParameters = {
+        'CMC_PRO_API_KEY': dotenv.env['API_KEY'],
+      }
       ..options.connectTimeout = connectionTimeout
       ..options.receiveTimeout = receiveTimeout
       ..options.responseType = ResponseType.json
       ..interceptors.add(
-        PrettyDioLogger(
-          logPrint: logInfo,
-          requestBody: true,
-          responseBody: false,
-        ),
+        PrettyDioLogger(logPrint: logInfo),
       )
       ..interceptors.add(
         RetryInterceptor(

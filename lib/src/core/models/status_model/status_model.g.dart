@@ -14,4 +14,7 @@ StatusModel _$StatusModelFromJson(Map<String, dynamic> json) => StatusModel(
       errorMessage: json['error_message'] as String?,
       elapsed: json['elapsed'] as int?,
       creditCount: json['credit_count'] as int?,
+      listings: (json['data'] as List<dynamic>?)
+          ?.map((e) => ListingsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
