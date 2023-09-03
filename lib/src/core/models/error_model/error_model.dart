@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_clean_architecture/src/core/models/error_model/status_model.dart';
+import 'package:flutter_clean_architecture/src/core/models/status_model/status_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'error_model.g.dart';
