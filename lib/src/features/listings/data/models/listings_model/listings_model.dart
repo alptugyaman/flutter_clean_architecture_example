@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_clean_architecture/src/features/data/models/quotes_model/quote_model.dart';
+import 'package:flutter_clean_architecture/src/features/listings/data/models/quotes_model/quote_model.dart';
+import 'package:flutter_clean_architecture/src/features/listings/domain/entities/listings_entity/listings_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'listings_model.g.dart';
@@ -31,6 +32,27 @@ class ListingsModel extends Equatable {
     return _$ListingsModelFromJson(json);
   }
 
+  ListingsEntity toEntity() => ListingsEntity(
+        id: id,
+        name: name,
+        symbol: symbol,
+        slug: slug,
+        numMarketPairs: numMarketPairs,
+        dateAdded: dateAdded,
+        tags: tags,
+        maxSupply: maxSupply,
+        circulatingSupply: circulatingSupply,
+        totalSupply: totalSupply,
+        infiniteSupply: infiniteSupply,
+        platform: platform,
+        cmcRank: cmcRank,
+        selfReportedCirculatingSupply: selfReportedCirculatingSupply,
+        selfReportedMarketCap: selfReportedMarketCap,
+        tvlRatio: tvlRatio,
+        lastUpdated: lastUpdated,
+        quote: quote?.toEntity(),
+      );
+
   final int? id;
   final String? name;
   final String? symbol;
@@ -41,11 +63,11 @@ class ListingsModel extends Equatable {
   final DateTime? dateAdded;
   final List<String>? tags;
   @JsonKey(name: 'max_supply')
-  final int? maxSupply;
+  final double? maxSupply;
   @JsonKey(name: 'circulating_supply')
-  final int? circulatingSupply;
+  final double? circulatingSupply;
   @JsonKey(name: 'total_supply')
-  final int? totalSupply;
+  final double? totalSupply;
   @JsonKey(name: 'infinite_supply')
   final bool? infiniteSupply;
   final dynamic platform;

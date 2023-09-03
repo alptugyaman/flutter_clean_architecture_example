@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_clean_architecture/src/features/listings/domain/entities/usd_entity/usd_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'usd_model.g.dart';
@@ -24,6 +25,23 @@ class UsdModel extends Equatable {
 
   factory UsdModel.fromJson(Map<String, dynamic> json) =>
       _$UsdModelFromJson(json);
+
+  UsdEntity toEntity() => UsdEntity(
+        price: price,
+        volume24h: volume24h,
+        volumeChange24h: volumeChange24h,
+        percentChange1h: percentChange1h,
+        percentChange24h: percentChange24h,
+        percentChange7d: percentChange7d,
+        percentChange30d: percentChange30d,
+        percentChange60d: percentChange60d,
+        percentChange90d: percentChange90d,
+        marketCap: marketCap,
+        marketCapDominance: marketCapDominance,
+        fullyDilutedMarketCap: fullyDilutedMarketCap,
+        tvl: tvl,
+        lastUpdated: lastUpdated,
+      );
 
   final double? price;
   @JsonKey(name: 'volume_24h')

@@ -17,9 +17,9 @@ ListingsModel _$ListingsModelFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['date_added'] as String),
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      maxSupply: json['max_supply'] as int?,
-      circulatingSupply: json['circulating_supply'] as int?,
-      totalSupply: json['total_supply'] as int?,
+      maxSupply: (json['max_supply'] as num?)?.toDouble(),
+      circulatingSupply: (json['circulating_supply'] as num?)?.toDouble(),
+      totalSupply: (json['total_supply'] as num?)?.toDouble(),
       infiniteSupply: json['infinite_supply'] as bool?,
       platform: json['platform'],
       cmcRank: json['cmc_rank'] as int?,
