@@ -26,10 +26,28 @@ class _ListingsView extends StatefulWidget {
 }
 
 class _ListingsViewState extends State<_ListingsView> {
+  late ScrollController scrollController;
+
   @override
   void initState() {
     super.initState();
-    context.read<GetListingsCubit>().getListings(start: 1, limit: 10);
+    scrollController = ScrollController()..addListener(scrollListener);
+    context.read<GetListingsCubit>().getListings(start: 1, limit: 20);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController
+      ..removeListener(scrollListener)
+      ..dispose();
+  }
+
+  void scrollListener() {
+    if (scrollController.offset >= scrollController.position.maxScrollExtent &&
+        !scrollController.position.outOfRange) {
+      context.read<GetListingsCubit>().getListings(start: 1, limit: 20);
+    }
   }
 
   @override
@@ -41,12 +59,23 @@ class _ListingsViewState extends State<_ListingsView> {
         } else if (state is GetListingsSuccess) {
           final listings = state.listings;
 
-          return ListView.builder(
-            itemCount: state.listings?.length,
-            itemBuilder: (context, index) {
-              final tokens = listings![index];
-              return Text(tokens.name!);
-            },
+          return ListView(
+            controller: scrollController,
+            children: [
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: state.listings?.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final tokens = listings![index];
+
+                  return ListTile(
+                    title: Text(tokens.symbol!),
+                    subtitle: Text(tokens.name!),
+                  );
+                },
+              ),
+            ],
           );
         }
         return state is GetListingsError

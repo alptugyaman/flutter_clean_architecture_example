@@ -22,7 +22,13 @@ class GetListingsCubit extends Cubit<GetListingsState> {
 
       result.fold(
         (err) => emit(GetListingsError(err.message)),
-        (data) => emit(GetListingsSuccess(listings: data)),
+        (data) {
+          if (data?.isEmpty ?? true) {
+            emit(GetListingsEmpty());
+          } else {
+            emit(GetListingsSuccess(listings: data));
+          }
+        },
       );
     } on Exception catch (_) {
       rethrow;

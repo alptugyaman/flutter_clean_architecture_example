@@ -18,6 +18,8 @@ final class GetListingsSuccess extends GetListingsState {
 
   final List<ListingsEntity>? listings;
 
+  int get listingsLength => listings?.length ?? 0;
+
   @override
   List<Object?> get props => [listings];
 }
