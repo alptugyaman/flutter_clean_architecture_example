@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_clean_architecture/src/features/data/models/listings_model/listings_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'status_model.g.dart';
@@ -11,6 +12,7 @@ class StatusModel extends Equatable {
     this.errorMessage,
     this.elapsed,
     this.creditCount,
+    this.listings,
   });
 
   factory StatusModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class StatusModel extends Equatable {
   final int? elapsed;
   @JsonKey(name: 'credit_count')
   final int? creditCount;
+  final List<ListingsModel>? listings;
 
   @override
   List<Object?> get props {
