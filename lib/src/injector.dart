@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_clean_architecture/src/config/router/app_router.dart';
 import 'package:flutter_clean_architecture/src/core/network/dio_client.dart';
 import 'package:flutter_clean_architecture/src/core/theme/app_theme.dart';
 import 'package:flutter_clean_architecture/src/features/listings/data/data_sources/remote/listings_remote_data_source.dart';
@@ -35,6 +36,9 @@ void init() {
     //* NETWORK
     ..registerLazySingleton(Dio.new)
     ..registerLazySingleton(() => DioClient(injector()))
+
+    //* ROUTER
+    ..registerLazySingleton(AppRouter.new)
 
     //* THEME
     ..registerLazySingleton(AppTheme.new);
