@@ -11,6 +11,8 @@ final class GetListingsInitial extends GetListingsState {}
 
 final class GetListingsLoading extends GetListingsState {}
 
+final class GetListingsEmpty extends GetListingsState {}
+
 final class GetListingsSuccess extends GetListingsState {
   const GetListingsSuccess({
     required this.listings,
@@ -19,10 +21,8 @@ final class GetListingsSuccess extends GetListingsState {
   final List<ListingsEntity>? listings;
 
   @override
-  List<Object?> get props => [listings];
+  List<Object?> get props => [listings?.length];
 }
-
-final class GetListingsEmpty extends GetListingsState {}
 
 final class GetListingsError extends GetListingsState {
   const GetListingsError(this.errorMessage);

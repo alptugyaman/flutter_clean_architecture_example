@@ -26,32 +26,69 @@ class _ListingsView extends StatefulWidget {
 }
 
 class _ListingsViewState extends State<_ListingsView> {
+  late ScrollController scrollController;
+
   @override
   void initState() {
     super.initState();
-    context.read<GetListingsCubit>().getListings(start: 1, limit: 10);
+    scrollController = ScrollController()..addListener(scrollListener);
+
+    context.read<GetListingsCubit>().getListings();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController
+      ..removeListener(scrollListener)
+      ..dispose();
+  }
+
+  void scrollListener() {
+    if (scrollController.offset >= scrollController.position.maxScrollExtent &&
+        !scrollController.position.outOfRange) {
+      context.read<GetListingsCubit>().getMoreListings();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final listings = context.watch<GetListingsCubit>().listings;
+
     return BlocBuilder<GetListingsCubit, GetListingsState>(
       builder: (context, state) {
-        if (state is GetListingsEmpty) {
-          return const Center(child: Text('Liste Boş'));
-        } else if (state is GetListingsSuccess) {
-          final listings = state.listings;
+        if (state is GetListingsSuccess) {
+          return ListView(
+            controller: scrollController,
+            children: [
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: listings?.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final tokens = listings![index];
 
-          return ListView.builder(
-            itemCount: state.listings?.length,
-            itemBuilder: (context, index) {
-              final tokens = listings![index];
-              return Text(tokens.name!);
-            },
+                  return ListTile(
+                    title: Text(tokens.symbol!),
+                    subtitle: Text(tokens.name!),
+                  );
+                },
+              ),
+              if (!context.watch<GetListingsCubit>().hasReachedMax) ...[
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ],
+            ],
           );
+        } else if (state is GetListingsEmpty) {
+          return const Center(child: Text('Empty'));
+        } else if (state is GetListingsError) {
+          return Center(child: Text(state.errorMessage));
         }
-        return state is GetListingsError
-            ? Center(child: Text(state.errorMessage))
-            : const Center(child: CircularProgressIndicator());
+
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
