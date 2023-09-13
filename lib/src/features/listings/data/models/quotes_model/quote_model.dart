@@ -13,9 +13,10 @@ class QuoteModel extends Equatable {
       _$QuoteModelFromJson(json);
 
   QuoteEntity toEntity() => QuoteEntity(
-        usdEntity: usdModel?.toEntity(),
+        usd: usdModel?.toEntity(),
       );
 
+  @JsonKey(name: 'USD')
   final UsdModel? usdModel;
 
   @override

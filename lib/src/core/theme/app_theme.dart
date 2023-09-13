@@ -6,7 +6,7 @@ class AppTheme {
   ThemeData get theme => ThemeData(
         fontFamily: GoogleFonts.lato().fontFamily,
         colorScheme: ColorScheme.fromSwatch(
-          accentColor: Colors.lightBlueAccent[900],
+          primarySwatch: Colors.green,
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,
