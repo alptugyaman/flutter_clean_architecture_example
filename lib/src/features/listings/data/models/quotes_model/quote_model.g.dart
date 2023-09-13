@@ -7,7 +7,7 @@ part of 'quote_model.dart';
 // **************************************************************************
 
 QuoteModel _$QuoteModelFromJson(Map<String, dynamic> json) => QuoteModel(
-      usdModel: json['usdModel'] == null
+      usdModel: json['USD'] == null
           ? null
-          : UsdModel.fromJson(json['usdModel'] as Map<String, dynamic>),
+          : UsdModel.fromJson(json['USD'] as Map<String, dynamic>),
     );
