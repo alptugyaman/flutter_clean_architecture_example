@@ -1,10 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/usecases/listings_usecase.dart';
-import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/cubit/get_listings_cubit.dart';
+import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/get_listings/get_listings_cubit.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/widgets/listings_success_widget.dart';
 import 'package:flutter_clean_architecture/src/injector.dart';
 
+@RoutePage()
 class ListingsView extends StatelessWidget {
   const ListingsView({super.key});
 
