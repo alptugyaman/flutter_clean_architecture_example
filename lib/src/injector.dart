@@ -7,7 +7,8 @@ import 'package:flutter_clean_architecture/src/features/listings/data/data_sourc
 import 'package:flutter_clean_architecture/src/features/listings/data/repositories/listings_repository_impl.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/repositories/listings_repository.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/usecases/listings_usecase.dart';
-import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/cubit/get_listings_cubit.dart';
+import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/get_listings/get_listings_cubit.dart';
+import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/get_token/get_token_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final injector = GetIt.instance;
@@ -32,6 +33,7 @@ void init() {
 
     //* BLoC & CUBIT
     ..registerFactory(() => GetListingsCubit(injector()))
+    ..registerFactory(() => GetTokenCubit(injector()))
 
     //* NETWORK
     ..registerLazySingleton(Dio.new)
