@@ -32,7 +32,8 @@ class _ListingsViewState extends State<_ListingsView> {
   void initState() {
     super.initState();
     scrollController = ScrollController()..addListener(scrollListener);
-    context.read<GetListingsCubit>().getListings(start: 1, limit: 20);
+
+    context.read<GetListingsCubit>().getListings();
   }
 
   @override
@@ -46,25 +47,23 @@ class _ListingsViewState extends State<_ListingsView> {
   void scrollListener() {
     if (scrollController.offset >= scrollController.position.maxScrollExtent &&
         !scrollController.position.outOfRange) {
-      context.read<GetListingsCubit>().getListings(start: 1, limit: 20);
+      context.read<GetListingsCubit>().getMoreListings();
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final listings = context.watch<GetListingsCubit>().listings;
+
     return BlocBuilder<GetListingsCubit, GetListingsState>(
       builder: (context, state) {
-        if (state is GetListingsEmpty) {
-          return const Center(child: Text('Liste Boş'));
-        } else if (state is GetListingsSuccess) {
-          final listings = state.listings;
-
+        if (state is GetListingsSuccess) {
           return ListView(
             controller: scrollController,
             children: [
               ListView.builder(
                 shrinkWrap: true,
-                itemCount: state.listings?.length,
+                itemCount: listings?.length,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final tokens = listings![index];
@@ -75,12 +74,21 @@ class _ListingsViewState extends State<_ListingsView> {
                   );
                 },
               ),
+              if (!context.watch<GetListingsCubit>().hasReachedMax) ...[
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ],
             ],
           );
+        } else if (state is GetListingsEmpty) {
+          return const Center(child: Text('Empty'));
+        } else if (state is GetListingsError) {
+          return Center(child: Text(state.errorMessage));
         }
-        return state is GetListingsError
-            ? Center(child: Text(state.errorMessage))
-            : const Center(child: CircularProgressIndicator());
+
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
