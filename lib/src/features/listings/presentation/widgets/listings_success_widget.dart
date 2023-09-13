@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/src/config/router/app_router.dart';
+import 'package:flutter_clean_architecture/src/config/router/app_router.gr.dart';
 import 'package:flutter_clean_architecture/src/core/extension/currenct_extension.dart';
 import 'package:flutter_clean_architecture/src/core/extension/up_or_down_color_extension.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/cubit/get_listings_cubit.dart';
+import 'package:flutter_clean_architecture/src/injector.dart';
 
 class ListingsSuccessWidget extends StatefulWidget {
   const ListingsSuccessWidget({
@@ -55,6 +59,9 @@ class _ListingsSuccessWidgetState extends State<ListingsSuccessWidget> {
             final tokens = listings![index];
 
             return ListTile(
+              onTap: () {
+                context.router.push(ListingsDetailRoute(listings: tokens));
+              },
               leading: Text('${index + 1}'),
               title: Text(
                 tokens.symbol!,
