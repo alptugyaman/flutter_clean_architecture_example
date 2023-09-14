@@ -1,6 +1,9 @@
 import 'package:flutter_clean_architecture/app.dart';
 import 'package:flutter_clean_architecture/bootstrap.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  bootstrap(() => const App());
+Future<void> main() async {
+  await dotenv.load(fileName: '.env.production');
+
+  await bootstrap(() => const App());
 }
