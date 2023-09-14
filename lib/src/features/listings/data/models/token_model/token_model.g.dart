@@ -38,30 +38,3 @@ TokenModel _$TokenModelFromJson(Map<String, dynamic> json) => TokenModel(
       selfReportedMarketCap: json['self_reported_market_cap'],
       infiniteSupply: json['infinite_supply'] as bool?,
     );
-
-Map<String, dynamic> _$TokenModelToJson(TokenModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'symbol': instance.symbol,
-      'category': instance.category,
-      'description': instance.description,
-      'slug': instance.slug,
-      'logo': instance.logo,
-      'subreddit': instance.subreddit,
-      'notice': instance.notice,
-      'tags': instance.tags,
-      'tag-names': instance.tagNames,
-      'tag-groups': instance.tagGroups,
-      'platform': instance.platform,
-      'date_added': instance.dateAdded?.toIso8601String(),
-      'twitter_username': instance.twitterUsername,
-      'is_hidden': instance.isHidden,
-      'date_launched': instance.dateLaunched?.toIso8601String(),
-      'contract_address': instance.contractAddress,
-      'self_reported_circulating_supply':
-          instance.selfReportedCirculatingSupply,
-      'self_reported_tags': instance.selfReportedTags,
-      'self_reported_market_cap': instance.selfReportedMarketCap,
-      'infinite_supply': instance.infiniteSupply,
-    };
