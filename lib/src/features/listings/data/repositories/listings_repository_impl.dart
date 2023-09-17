@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_clean_architecture/src/core/network/network_exception.dart';
-import 'package:flutter_clean_architecture/src/features/listings/data/data_sources/remote/listings_remote_data_source.dart';
+import 'package:flutter_clean_architecture/src/features/listings/data/data_sources/remote/listings/listings_remote_data_source.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/entities/listings_entity/listings_entity.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/entities/token_entity/token_entity.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/repositories/listings_repository.dart';
