@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/src/config/router/app_router.gr.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/usecases/listings_usecase.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/get_listings/get_listings_cubit.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/widgets/listings_success_widget.dart';
@@ -12,11 +13,9 @@ class ListingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (_) => GetListingsCubit(injector<ListingsUsecase>()),
-        child: const _ListingsView(),
-      ),
+    return BlocProvider(
+      create: (_) => GetListingsCubit(injector<ListingsUsecase>()),
+      child: const _ListingsView(),
     );
   }
 }
@@ -55,6 +54,12 @@ class _ListingsViewState extends State<_ListingsView> {
           }
 
           return const Center(child: CircularProgressIndicator());
+        },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: const Text('a16z portfolio'),
+        onPressed: () {
+          context.router.push(VcRoute(id: '605e2ce9d41eae1066535f7c'));
         },
       ),
     );

@@ -8,23 +8,25 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:flutter/material.dart' as _i6;
 import 'package:flutter_clean_architecture/src/features/listings/domain/entities/listings_entity/listings_entity.dart'
-    as _i4;
+    as _i5;
 import 'package:flutter_clean_architecture/src/features/listings/presentation/views/listings_detail_view.dart'
     as _i1;
 import 'package:flutter_clean_architecture/src/features/listings/presentation/views/listings_view.dart'
     as _i2;
+import 'package:flutter_clean_architecture/src/features/vcs/presentation/views/vc_view.dart'
+    as _i3;
 
-abstract class $AppRouter extends _i3.RootStackRouter {
+abstract class $AppRouter extends _i4.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
+  final Map<String, _i4.PageFactory> pagesMap = {
     ListingsDetailRoute.name: (routeData) {
       final args = routeData.argsAs<ListingsDetailRouteArgs>();
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.ListingsDetailView(
           listings: args.listings,
@@ -33,9 +35,19 @@ abstract class $AppRouter extends _i3.RootStackRouter {
       );
     },
     ListingsRoute.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.ListingsView(),
+      );
+    },
+    VcRoute.name: (routeData) {
+      final args = routeData.argsAs<VcRouteArgs>();
+      return _i4.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i3.VcView(
+          id: args.id,
+          key: args.key,
+        ),
       );
     },
   };
@@ -43,11 +55,11 @@ abstract class $AppRouter extends _i3.RootStackRouter {
 
 /// generated route for
 /// [_i1.ListingsDetailView]
-class ListingsDetailRoute extends _i3.PageRouteInfo<ListingsDetailRouteArgs> {
+class ListingsDetailRoute extends _i4.PageRouteInfo<ListingsDetailRouteArgs> {
   ListingsDetailRoute({
-    required _i4.ListingsEntity listings,
-    _i5.Key? key,
-    List<_i3.PageRouteInfo>? children,
+    required _i5.ListingsEntity listings,
+    _i6.Key? key,
+    List<_i4.PageRouteInfo>? children,
   }) : super(
           ListingsDetailRoute.name,
           args: ListingsDetailRouteArgs(
@@ -59,8 +71,8 @@ class ListingsDetailRoute extends _i3.PageRouteInfo<ListingsDetailRouteArgs> {
 
   static const String name = 'ListingsDetailRoute';
 
-  static const _i3.PageInfo<ListingsDetailRouteArgs> page =
-      _i3.PageInfo<ListingsDetailRouteArgs>(name);
+  static const _i4.PageInfo<ListingsDetailRouteArgs> page =
+      _i4.PageInfo<ListingsDetailRouteArgs>(name);
 }
 
 class ListingsDetailRouteArgs {
@@ -69,9 +81,9 @@ class ListingsDetailRouteArgs {
     this.key,
   });
 
-  final _i4.ListingsEntity listings;
+  final _i5.ListingsEntity listings;
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   @override
   String toString() {
@@ -81,8 +93,8 @@ class ListingsDetailRouteArgs {
 
 /// generated route for
 /// [_i2.ListingsView]
-class ListingsRoute extends _i3.PageRouteInfo<void> {
-  const ListingsRoute({List<_i3.PageRouteInfo>? children})
+class ListingsRoute extends _i4.PageRouteInfo<void> {
+  const ListingsRoute({List<_i4.PageRouteInfo>? children})
       : super(
           ListingsRoute.name,
           initialChildren: children,
@@ -90,5 +102,42 @@ class ListingsRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'ListingsRoute';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.VcView]
+class VcRoute extends _i4.PageRouteInfo<VcRouteArgs> {
+  VcRoute({
+    required String id,
+    _i6.Key? key,
+    List<_i4.PageRouteInfo>? children,
+  }) : super(
+          VcRoute.name,
+          args: VcRouteArgs(
+            id: id,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'VcRoute';
+
+  static const _i4.PageInfo<VcRouteArgs> page = _i4.PageInfo<VcRouteArgs>(name);
+}
+
+class VcRouteArgs {
+  const VcRouteArgs({
+    required this.id,
+    this.key,
+  });
+
+  final String id;
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'VcRouteArgs{id: $id, key: $key}';
+  }
 }

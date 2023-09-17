@@ -12,5 +12,8 @@ class AppRouter extends $AppRouter {
         AutoRoute(
           page: ListingsDetailRoute.page,
         ),
+        AutoRoute(
+          page: VcRoute.page,
+        ),
       ];
 }
