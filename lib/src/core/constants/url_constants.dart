@@ -4,4 +4,5 @@ library;
 class UrlContants {
   static const listings = 'v1/cryptocurrency/listings/latest';
   static const token = 'v2/cryptocurrency/info';
+  static const category = 'v1/cryptocurrency/category';
 }
