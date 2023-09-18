@@ -17,7 +17,11 @@ class DioClient {
       ..options.receiveTimeout = receiveTimeout
       ..options.responseType = ResponseType.json
       ..interceptors.add(
-        PrettyDioLogger(logPrint: logInfo),
+        PrettyDioLogger(
+          logPrint: logInfo,
+          requestBody: true,
+          responseBody: false,
+        ),
       )
       ..interceptors.add(
         RetryInterceptor(
