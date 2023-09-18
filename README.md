@@ -111,7 +111,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
     <key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
-		<string>es</string>
+		<string>tr</string>
 	</array>
 
     ...
@@ -125,7 +125,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 ├── l10n
 │   ├── arb
 │   │   ├── app_en.arb
-│   │   └── app_es.arb
+│   │   └── app_tr.arb
 ```
 
 2. Add the translated strings to each `.arb` file:
@@ -142,14 +142,14 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
-`app_es.arb`
+`app_tr.arb`
 
 ```arb
 {
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
+    "@@locale": "tr",
+    "counterAppBarTitle": "Sayaç",
     "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
+        "description": "Sayaç sayfasının uygulama çubuğunda gösterilen metin"
     }
 }
 ```

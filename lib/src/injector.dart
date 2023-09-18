@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_clean_architecture/src/config/router/app_router.dart';
+import 'package:flutter_clean_architecture/src/core/cache/secure_storage.dart';
 import 'package:flutter_clean_architecture/src/core/network/dio_client.dart';
 import 'package:flutter_clean_architecture/src/core/theme/app_theme.dart';
 import 'package:flutter_clean_architecture/src/features/listings/data/data_sources/remote/listings/listings_remote_data_source.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_clean_architecture/src/features/vcs/data/repositories/vc
 import 'package:flutter_clean_architecture/src/features/vcs/domain/repositories/vcs_repository.dart';
 import 'package:flutter_clean_architecture/src/features/vcs/domain/usecases/vcs_usecase.dart';
 import 'package:flutter_clean_architecture/src/features/vcs/presentation/cubits/get_vc/get_vc_data_cubit.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
 final injector = GetIt.instance;
@@ -59,5 +61,9 @@ void init() {
     ..registerLazySingleton(AppRouter.new)
 
     //* THEME
-    ..registerLazySingleton(AppTheme.new);
+    ..registerLazySingleton(AppTheme.new)
+
+    //* STORAGE
+    ..registerLazySingleton(FlutterSecureStorage.new)
+    ..registerLazySingleton(() => SecureStorage(injector()));
 }

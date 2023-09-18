@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/l10n/l10n.dart';
 import 'package:flutter_clean_architecture/src/config/router/app_router.gr.dart';
+import 'package:flutter_clean_architecture/src/core/constants/string_constants.dart';
+import 'package:flutter_clean_architecture/src/core/localization/locale_provider.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/usecases/listings_usecase.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/get_listings/get_listings_cubit.dart';
+import 'package:flutter_clean_architecture/src/features/listings/presentation/widgets/change_localization_widget.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/widgets/listings_success_widget.dart';
 import 'package:flutter_clean_architecture/src/injector.dart';
 
@@ -38,17 +42,20 @@ class _ListingsViewState extends State<_ListingsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Coin Market Cap',
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          context.l10n.cleanArchitectureExample,
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: const [
+          ChangeLocalizationWidget(),
+        ],
       ),
       body: BlocBuilder<GetListingsCubit, GetListingsState>(
         builder: (context, state) {
           if (state is GetListingsSuccess) {
             return ListingsSuccessWidget(state: state);
           } else if (state is GetListingsEmpty) {
-            return const Center(child: Text('Empty'));
+            return Center(child: Text(context.l10n.emptyList));
           } else if (state is GetListingsError) {
             return Center(child: Text(state.errorMessage));
           }
@@ -57,9 +64,9 @@ class _ListingsViewState extends State<_ListingsView> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        label: const Text('a16z portfolio'),
+        label: Text(context.l10n.a16zPortfolio),
         onPressed: () {
-          context.router.push(VcRoute(id: '605e2ce9d41eae1066535f7c'));
+          context.router.push(VcRoute(id: StringContants.a16zId));
         },
       ),
     );
