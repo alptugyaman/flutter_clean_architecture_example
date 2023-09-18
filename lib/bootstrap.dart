@@ -31,10 +31,15 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
 
+  await _initialize();
+
+  runApp(await builder());
+}
+
+Future<void> _initialize() async {
   di.init();
+
   Loggy.initLoggy(logPrinter: const PrettyDeveloperPrinter());
 
   await dotenv.load(fileName: '.env.${StringContants.envorinment}');
-
-  runApp(await builder());
 }
