@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/l10n/l10n.dart';
 import 'package:flutter_clean_architecture/src/config/router/app_router.gr.dart';
 import 'package:flutter_clean_architecture/src/core/constants/string_constants.dart';
+import 'package:flutter_clean_architecture/src/core/localization/locale_provider.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/usecases/listings_usecase.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/cubits/get_listings/get_listings_cubit.dart';
 import 'package:flutter_clean_architecture/src/features/listings/presentation/widgets/change_localization_widget.dart';

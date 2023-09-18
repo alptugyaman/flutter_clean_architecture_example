@@ -20,6 +20,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_loggy: ^2.0.2
+  flutter_secure_storage: ^9.0.0
   get_it: ^7.6.2
   google_fonts: ^6.0.0
   intl: ^0.18.1
@@ -43,6 +44,7 @@ flutter:
   generate: true
 
   assets:
+    - assets/images/
     - .env.development
     - .env.production
     - .env.staging
