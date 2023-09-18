@@ -1,7 +1,13 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+    "a16zPortfolio": "a16z Portfolio",
+    "cmc":"Coin Market Cap",
+    "emptyList":"Empty List",
+    "lastUpdated":"Last Updated:",
+    "numberOfTokens":"Number of Tokens:",
+    "marketCap":"Market Cap:",
+    "volume":"Volume:",
+    "coins":"Coins",
+    "cmcRank":"CMC Rank",
+    "cleanArchitectureExample": "Clean Architecture Example"
 }

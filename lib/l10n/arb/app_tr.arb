@@ -1,0 +1,13 @@
+{
+    "@@locale": "tr",
+    "a16zPortfolio": "a16z Portfolyo",
+    "cmc":"Coin Market Cap",
+    "emptyList":"Boş Liste",
+    "lastUpdated":"Son Güncelleme:",
+    "numberOfTokens":"Token Adedi:",
+    "marketCap":"Market Hacmi:",
+    "volume":"Hacim:",
+    "coins":"Coinler",
+    "cmcRank":"CMC Sırası",
+    "cleanArchitectureExample": "Clean Architecture Örneği"
+}
