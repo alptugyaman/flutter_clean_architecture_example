@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/src/core/extension/currenct_extension.dart';
+import 'package:flutter_clean_architecture/src/core/extension/currency_extension.dart';
 import 'package:flutter_clean_architecture/src/core/extension/up_or_down_color_extension.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/entities/listings_entity/listings_entity.dart';
 import 'package:flutter_clean_architecture/src/features/listings/domain/usecases/listings_usecase.dart';
