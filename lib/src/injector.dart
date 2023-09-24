@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_clean_architecture/src/config/router/app_router.dart';
 import 'package:flutter_clean_architecture/src/core/cache/secure_storage.dart';
+import 'package:flutter_clean_architecture/src/core/cubit/app_language/app_language_cubit.dart';
 import 'package:flutter_clean_architecture/src/core/network/dio_client.dart';
 import 'package:flutter_clean_architecture/src/core/theme/app_theme.dart';
 import 'package:flutter_clean_architecture/src/features/listings/data/data_sources/remote/listings/listings_remote_data_source.dart';
@@ -49,6 +50,7 @@ void init() {
     ..registerFactory(() => VcsUsecase(injector()))
 
     //* BLoC & CUBIT
+    ..registerFactory(AppLanguageCubit.new)
     ..registerFactory(() => GetListingsCubit(injector()))
     ..registerFactory(() => GetTokenCubit(injector()))
     ..registerFactory(() => GetVcDataCubit(injector()))

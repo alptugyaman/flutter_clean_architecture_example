@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/src/core/cubit/app_language/app_language_cubit.dart';
 import 'package:flutter_clean_architecture/src/core/enums/enums.dart';
-import 'package:flutter_clean_architecture/src/core/localization/locale_provider.dart';
+import 'package:flutter_clean_architecture/src/core/models/app_language_model/app_language.dart';
 import 'package:provider/provider.dart';
 
 class ChangeLocalizationWidget extends StatelessWidget {
@@ -8,18 +9,22 @@ class ChangeLocalizationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localeProvider = context.watch<LocaleProvider>();
+    final localeProvider = context.watch<AppLanguageCubit>();
 
-    final locale = localeProvider.locale == LocaleEnums.turkish.value
+    final locale = localeProvider.getLocale == LocaleEnums.turkish.value
         ? LocaleEnums.english.value
         : LocaleEnums.turkish.value;
 
-    final flag = localeProvider.locale == LocaleEnums.turkish.value
+    final flag = localeProvider.getLocale == LocaleEnums.turkish.value
         ? FlagEnums.english.value
         : FlagEnums.turkish.value;
 
     return RawMaterialButton(
-      onPressed: () => localeProvider.setLocale(locale),
+      onPressed: () {
+        localeProvider.setLocale(
+          AppLanguage(languageCode: locale.languageCode),
+        );
+      },
       child: Text(
         flag,
         style: const TextStyle(
