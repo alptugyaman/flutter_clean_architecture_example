@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/src/config/router/app_router.gr.dart';
 import 'package:flutter_clean_architecture/src/core/constants/image_path_constants.dart';
 import 'package:flutter_clean_architecture/src/core/constants/string_constants.dart';
-import 'package:flutter_clean_architecture/src/core/localization/locale_provider.dart';
-import 'package:provider/provider.dart';
 
 @RoutePage()
 class SplashView extends StatefulWidget {
@@ -18,11 +16,10 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    initLocalization();
+    toListings();
   }
 
-  Future<void> initLocalization() async {
-    await context.read<LocaleProvider>().initLocale();
+  Future<void> toListings() async {
     await Future.delayed(const Duration(seconds: 1), () async {
       await context.router.replace(const ListingsRoute());
     });
@@ -31,6 +28,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.green,
       child: Stack(
         children: [
           Center(
@@ -44,6 +42,7 @@ class _SplashViewState extends State<SplashView> {
               padding: const EdgeInsets.only(bottom: 32),
               child: Text(
                 StringContants.envorinment,
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ),
