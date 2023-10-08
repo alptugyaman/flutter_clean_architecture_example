@@ -24,30 +24,20 @@ class ListingsDetailView extends StatelessWidget {
         title: Text(listings.name?.toUpperCase() ?? ''),
       ),
       body: BlocProvider(
-        create: (_) => GetTokenCubit(injector<ListingsUsecase>()),
+        create: (_) => GetTokenCubit(injector<ListingsUsecase>())
+          ..getToken(listings.id.toString()),
         child: _ListingsDetailView(listings: listings),
       ),
     );
   }
 }
 
-class _ListingsDetailView extends StatefulWidget {
+class _ListingsDetailView extends StatelessWidget {
   const _ListingsDetailView({
     required this.listings,
   });
 
   final ListingsEntity listings;
-
-  @override
-  State<_ListingsDetailView> createState() => _ListingsDetailViewState();
-}
-
-class _ListingsDetailViewState extends State<_ListingsDetailView> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<GetTokenCubit>().getToken(widget.listings.id.toString());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +64,11 @@ class _ListingsDetailViewState extends State<_ListingsDetailView> {
                   ),
                   const Spacer(),
                   Text(
-                    widget.listings.quote?.usd?.price?.formatAsCurrency() ?? '',
+                    listings.quote?.usd?.price?.formatAsCurrency() ?? '',
                     style: TextStyle(
                       fontSize: 24,
-                      color: widget
-                          .listings.quote?.usd?.percentChange24h?.upOrDownColor,
+                      color:
+                          listings.quote?.usd?.percentChange24h?.upOrDownColor,
                     ),
                   ),
                 ],
