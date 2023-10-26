@@ -11,7 +11,7 @@ dependencies:
   bloc: ^8.1.2
   dartz: ^0.10.1
   dio: ^5.3.2
-  dio_smart_retry: ^5.0.0
+  dio_smart_retry: ^6.0.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
